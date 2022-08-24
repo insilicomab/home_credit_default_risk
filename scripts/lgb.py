@@ -12,7 +12,9 @@ from sklearn.metrics import roc_auc_score
 import mlflow
 import mlflow.lightgbm
 
-from utils import reduce_mem_usage, le_lgb, fetch_logged_data
+from utils import (
+    reduce_mem_usage, le_lgb, fetch_logged_data, predict_models
+)
 
 import hydra
 from omegaconf import DictConfig
@@ -105,26 +107,15 @@ def main(cfg: DictConfig):
     inference
     """
 
-    # 説明変数と目的変数を指定
+    # 説明変数を指定
     X_test = test.drop(cfg.lgb.drop_col, axis=1)
-
-    # テストデータにおける予測
-    preds = []
-
-    for model in models:
-        pred = model.predict(X_test)
-        preds.append(pred)
-
-    # predsの平均を計算
-    preds_array = np.array(preds)
-    preds_mean = np.mean(preds_array, axis=0)
 
     # 提出用サンプルの読み込み
     sub = pd.read_csv(
         '../input/home-credit-default-risk/sample_submission.csv')
 
-    # 目的変数カラムの置き換え
-    sub['TARGET'] = preds_mean
+    # 推論
+    sub = predict_models(X_test, models, sub)
 
     # ファイルのエクスポート
     sub.to_csv(cfg.lgb.sub.name, index=False)
