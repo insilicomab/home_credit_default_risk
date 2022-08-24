@@ -1,0 +1,36 @@
+# Hydra Settings
+defaults: 
+  - _self_ 
+  - override hydra/hydra_logging: disabled 
+  - override hydra/job_logging: disabled
+ 
+hydra:
+  run:
+    dir: ./
+  output_subdir: null
+  sweep:
+    dir: .
+    subdir: .
+
+# lgb.py
+lgb:
+  df: '../input/processed/featured_df.csv'
+  folds:
+    num: 5
+    shuffle: True
+  params:
+    boosting_type: 'gbdt'
+    objective: 'binary'
+    metric: 'auc'
+    learning_rate: 0.05
+    num_leaves: 32
+    n_estimators: 100000
+    random_state: 1234
+    importance_type: 'gain'
+  drop_col: ['TARGET', 'SK_ID_CURR']
+  model:
+    num_boost_round: 1000
+    early_stopping_rounds: 100
+    verbose_eval: 10
+  sub:
+    name: '../submit/submission_FeatureEngineering1.csv'
