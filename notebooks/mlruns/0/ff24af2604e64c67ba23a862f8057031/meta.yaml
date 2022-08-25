@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/mitsutaka/Desktop/home_credit_default_risk/notebooks/mlruns/0/ff24af2604e64c67ba23a862f8057031/artifacts
+end_time: 1661394352933
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: ff24af2604e64c67ba23a862f8057031
+run_uuid: ff24af2604e64c67ba23a862f8057031
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1661394315273
+status: 3
+tags: []
+user_id: mitsutaka
