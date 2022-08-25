@@ -82,7 +82,7 @@ def main():
     df = annuity_div_credit(df)
 
     # featured_posを結合
-    df = pd.merge(train, featured_pos, on='SK_ID_CURR', how='left')
+    #df = pd.merge(train, featured_pos, on='SK_ID_CURR', how='left')
 
     print(df.shape)
 

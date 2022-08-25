@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/mitsutaka/Desktop/home_credit_default_risk/scripts/mlruns/0/e32079af65dc4b10b3e257f0654be8a1/artifacts
+end_time: 1661435594309
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: e32079af65dc4b10b3e257f0654be8a1
+run_uuid: e32079af65dc4b10b3e257f0654be8a1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1661435557695
+status: 3
+tags: []
+user_id: mitsutaka
