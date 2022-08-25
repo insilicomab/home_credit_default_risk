@@ -62,10 +62,12 @@ def main():
         '../input/home-credit-default-risk/application_train.csv')
     test = pd.read_csv(
         '../input/home-credit-default-risk/application_test.csv')
+    featured_pos = pd.read_csv('../input/processed/featured_pos.csv')
 
     # メモリの削減
     train = reduce_mem_usage(train)
     test = reduce_mem_usage(test)
+    featured_pos = reduce_mem_usage(featured_pos)
 
     # 学習データとテストデータの連結
     df = pd.concat([train, test], sort=False).reset_index(drop=True)
@@ -78,6 +80,11 @@ def main():
     df = days_employed_div_birth(df)
     df = annuity_div_income(df)
     df = annuity_div_credit(df)
+
+    # featured_posを結合
+    df = pd.merge(train, featured_pos, on='SK_ID_CURR', how='left')
+
+    print(df.shape)
 
     # CSVファイルとして出力
     df.to_csv('../input/processed/featured_df.csv', header=True, index=False)
