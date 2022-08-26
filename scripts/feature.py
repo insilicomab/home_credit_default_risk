@@ -82,7 +82,10 @@ def main():
     df = annuity_div_credit(df)
 
     # featured_posを結合
-    #df = pd.merge(train, featured_pos, on='SK_ID_CURR', how='left')
+    df = pd.merge(train, featured_pos, on='SK_ID_CURR', how='left')
+
+    # 要素数が1つしかないカラムを削除
+    df = df.loc[:, df.nunique() != 1]
 
     print(df.shape)
 
